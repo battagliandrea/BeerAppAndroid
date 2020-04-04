@@ -1,0 +1,4 @@
+rootProject.name='BeerAppAndroid'
+include ':app'
+include ':app_data'
+include ':app_domain'
