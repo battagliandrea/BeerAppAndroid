@@ -1,7 +1,7 @@
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':app_data')
+    implementation project(':app_usecase')
 
     implementation deps.kotlin.stdlib
     implementation deps.kotlin.coroutines_core
@@ -28,8 +28,12 @@ dependencies {
     }
 
     implementation deps.androidx.appcompat
+    implementation deps.androidx.lifecycleExt
+    implementation deps.androidx.lifecycleViewmodel
     implementation deps.androidx.constraint
     implementation deps.androidx.constraint_solver
+
+    implementation deps.support.java_inject
 
     implementation deps.glide.runtime
     kapt  deps.glide.compiler

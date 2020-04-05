@@ -1,4 +1,4 @@
-package com.ab21.beerappandroid
+package com.battagliandrea.beerappandroid
 
 import org.junit.Test
 

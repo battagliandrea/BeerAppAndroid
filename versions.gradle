@@ -7,9 +7,13 @@ versions.kotlin = '1.3.61'
 versions.coroutines = '1.3.2'
 versions.junit = '4.12'
 
+versions.androidArch = '2.0.0'
 versions.androidX = '1.1.0-beta01'
 versions.androidXConstraintLayout = '2.0.0-beta4'
-versions.androidTest = '1.1.0'
+versions.androidXTest = '1.1.0'
+versions.androidXmultidex = '2.0.0'
+
+versions.supportJavaInject = '1'
 
 versions.dagger = '2.16'
 versions.daggerAssisted = '0.5.1'
@@ -43,12 +47,19 @@ kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
 deps.kotlin = kotlin
 
 def androidx = [:]
+androidx.multidex = "androidx.multidex:multidex:$versions.androidXmultidex"
 androidx.appcompat = "androidx.appcompat:appcompat:$versions.androidX"
+androidx.lifecycleExt = "androidx.lifecycle:lifecycle-extensions:$versions.androidArch"
+androidx.lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.androidArch"
 androidx.constraint = "androidx.constraintlayout:constraintlayout:$versions.androidXConstraintLayout"
 androidx.constraint_solver = "androidx.constraintlayout:constraintlayout-solver:$versions.androidXConstraintLayout"
 androidx.runner = "androidx.test:runner:$versions.androidXTest"
 androidx.rules ="androidx.test:rules:$versions.androidXTest"
 deps.androidx = androidx
+
+def support = [:]
+support.java_inject = "javax.inject:javax.inject:$versions.supportJavaInject"
+deps.support = support
 
 def dagger = [:]
 dagger.runtime = "com.google.dagger:dagger:$versions.dagger"

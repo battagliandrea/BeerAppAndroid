@@ -3,8 +3,14 @@ apply plugin: 'org.jetbrains.kotlin.jvm'
 
 dependencies {
 
+
+
     implementation deps.kotlin.stdlib
     implementation deps.kotlin.coroutines_core
+
+    implementation deps.support.java_inject
+
+    api deps.support.java_inject
 }
 
 sourceCompatibility = "8"

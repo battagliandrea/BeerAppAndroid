@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="BeerAppAndroid/app" />
       <module fileurl="file://$PROJECT_DIR$/app_data/app_data.iml" filepath="$PROJECT_DIR$/app_data/app_data.iml" group="BeerAppAndroid/app_data" />
       <module fileurl="file://$PROJECT_DIR$/app_domain/app_domain.iml" filepath="$PROJECT_DIR$/app_domain/app_domain.iml" group="BeerAppAndroid/app_domain" />
+      <module fileurl="file://$PROJECT_DIR$/app_usecase/app_usecase.iml" filepath="$PROJECT_DIR$/app_usecase/app_usecase.iml" group="BeerAppAndroid/app_usecase" />
     </modules>
   </component>
 </project>

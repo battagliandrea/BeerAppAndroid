@@ -3,10 +3,12 @@ apply plugin: 'org.jetbrains.kotlin.jvm'
 
 dependencies {
 
-    api project(':app_domain')
+    api project(':app_data')
 
     implementation deps.kotlin.stdlib
     implementation deps.kotlin.coroutines_core
+
+    implementation deps.support.java_inject
 
     api deps.support.java_inject
 }
