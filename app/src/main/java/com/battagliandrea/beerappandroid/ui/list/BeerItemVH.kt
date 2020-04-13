@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.view_beer_item.view.*
 
 class BeerItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun render(item: BeerItemUI) = with(itemView) {
+    fun render(item: BeerItemUI, listener: OnItemClickListener? = null) = with(itemView) {
         tvTitle.text = item.name
         tvDescription.text = item.description
 
@@ -23,5 +23,9 @@ class BeerItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .dontAnimate())
             .into(ivImage)
+
+        itemView.setOnClickListener {
+            listener?.onItemClick(adapterPosition, item.id)
+        }
     }
 }

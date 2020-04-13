@@ -3,28 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragment_main">
+    app:startDestination="@id/fragment_beers">
 
     <fragment
-        android:id="@+id/fragment_main"
+        android:id="@+id/fragment_beers"
         android:name="com.battagliandrea.beerappandroid.ui.list.BeersFragment"
         android:label="Nav Fragment One"
-        tools:layout="@layout/fragment_main">
+        tools:layout="@layout/fragment_beers">
 
-<!--        <action-->
-<!--            android:id="@+id/one_to_two"-->
-<!--            app:destination="@id/nav_fragment_two"-->
-<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
-<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
-<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
-<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim"-->
-<!--            />-->
+        <action
+            android:id="@+id/action_beersFragment_to_beerDetailsFragment"
+            app:destination="@id/fragment_details"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+            <argument
+                android:name="beerId"
+                app:argType="long"/>
+        </action>
     </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/nav_fragment_two"-->
-<!--        android:name="com.m.navigationsample1.FragmentTwo"-->
-<!--        android:label="Nav Fragment Two"-->
-<!--        tools:layout="@layout/fragment_two"/>-->
+    <fragment
+        android:id="@+id/fragment_details"
+        android:name="com.battagliandrea.beerappandroid.ui.details.BeerDetailsFragment"
+        android:label="Beer Detail"
+        tools:layout="@layout/fragment_beer_details">
+
+        <argument
+            android:name="beerId"
+            app:argType="long"/>
+    </fragment>
 
 </navigation>

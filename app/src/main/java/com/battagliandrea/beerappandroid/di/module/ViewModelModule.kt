@@ -2,6 +2,7 @@ package com.battagliandrea.beerappandroid.di.module
 
 import androidx.lifecycle.ViewModel
 import com.abdroid.jrv.core.android.dagger.ViewModelKey
+import com.battagliandrea.beerappandroid.ui.details.BeerDetailsViewModel
 import com.battagliandrea.beerappandroid.ui.list.BeersViewModel
 import dagger.Module
 import dagger.Provides
@@ -15,4 +16,9 @@ class ViewModelModule {
     @IntoMap
     @ViewModelKey(BeersViewModel::class)
     fun provideBeersViewModel(viewModel: BeersViewModel): ViewModel = viewModel
+
+    @Provides
+    @IntoMap
+    @ViewModelKey(BeerDetailsViewModel::class)
+    fun provideBeerDetailsViewModel(viewModel: BeerDetailsViewModel): ViewModel = viewModel
 }

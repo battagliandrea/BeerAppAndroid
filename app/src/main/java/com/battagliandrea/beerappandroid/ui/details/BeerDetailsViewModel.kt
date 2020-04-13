@@ -1,34 +1,29 @@
-package com.battagliandrea.beerappandroid.ui.list
-
+package com.battagliandrea.beerappandroid.ui.details
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.battagliandrea.beerappandroid.ui.models.BeerItemUI
-import com.battagliandrea.beerappandroid.ui.models.toItemModels
-import com.battagliandrea.usecase.GetBeers
+import com.battagliandrea.beerappandroid.ui.models.BeerDetailsUI
+import com.battagliandrea.beerappandroid.ui.models.toDetailsModel
+import com.battagliandrea.usecase.GetBeer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-open class BeersViewModel @Inject constructor(
-        private val getBeers: GetBeers
+open class BeerDetailsViewModel @Inject constructor(
+        private val getBeer: GetBeer
 ) : ViewModel() {
 
-    val beers = MutableLiveData<List<BeerItemUI>>()
+    val beer = MutableLiveData<BeerDetailsUI>()
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //          PUBLIC METHODS
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    init {
-        load()
-    }
-
-    private fun load(){
+    fun load(id: Long){
         GlobalScope.launch (Dispatchers.Main) {
-            val result = withContext(Dispatchers.IO) { getBeers() }
-            beers.postValue(result.toItemModels())
+            val result = withContext(Dispatchers.IO) { getBeer(id) }
+            beer.postValue(result.toDetailsModel())
         }
     }
 }

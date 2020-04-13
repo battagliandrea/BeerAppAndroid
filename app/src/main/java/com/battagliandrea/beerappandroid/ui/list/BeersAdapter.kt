@@ -20,6 +20,8 @@ open class BeersAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerVie
         const val TYPE_BEER = 1
     }
 
+    var onItemClickListener: OnItemClickListener? = null
+
     private var data: MutableList<ListItemUI> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -41,7 +43,7 @@ open class BeersAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerVie
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)){
             TYPE_TITLE -> (holder as TitleItemVH).render(data[position] as TitleItemUI)
-            TYPE_BEER -> (holder as BeerItemVH).render(data[position] as BeerItemUI)
+            TYPE_BEER -> (holder as BeerItemVH).render(data[position] as BeerItemUI, onItemClickListener)
             else -> {
                 throw RuntimeException("No supported viewType")
             }

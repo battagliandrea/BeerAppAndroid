@@ -58,6 +58,7 @@ androidx.constraint = "androidx.constraintlayout:constraintlayout:$versions.andr
 androidx.constraint_solver = "androidx.constraintlayout:constraintlayout-solver:$versions.androidXConstraintLayout"
 androidx.navigation_fragment =  "androidx.navigation:navigation-fragment-ktx:$versions.androidXNavigation"
 androidx.navigation_ui = "androidx.navigation:navigation-ui-ktx:$versions.androidXNavigation"
+androidx.navigation_safe_args = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.androidXNavigation"
 
 androidx.runner = "androidx.test:runner:$versions.androidXTest"
 androidx.rules ="androidx.test:rules:$versions.androidXTest"
