@@ -32,6 +32,8 @@ dependencies {
     implementation deps.androidx.lifecycleViewmodel
     implementation deps.androidx.constraint
     implementation deps.androidx.constraint_solver
+    implementation deps.androidx.navigation_fragment
+    implementation deps.androidx.navigation_ui
 
     implementation deps.support.java_inject
 

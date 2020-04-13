@@ -1,8 +1,8 @@
 package com.battagliandrea.beerappandroid.di
 
 import android.app.Application
-import com.battagliandrea.beerappandroid.di.binding.ActivityBindingModule
-import com.battagliandrea.beerappandroid.di.binding.FragmentBindingModule
+import com.battagliandrea.beerappandroid.di.module.ActivityModule
+import com.battagliandrea.beerappandroid.di.module.FragmentModule
 import com.battagliandrea.beerappandroid.di.module.*
 import dagger.BindsInstance
 import dagger.Component
@@ -15,8 +15,8 @@ import javax.inject.Singleton
 @Component(
         modules = [
             AppModule::class,
-            ActivityBindingModule::class,
-            FragmentBindingModule::class,
+            ActivityModule::class,
+            FragmentModule::class,
             ViewModelModule::class,
             RepositoryModule::class,
             DataSourceModule::class,

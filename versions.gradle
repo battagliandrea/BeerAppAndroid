@@ -11,6 +11,7 @@ versions.androidArch = '2.0.0'
 versions.androidX = '1.1.0-beta01'
 versions.androidXConstraintLayout = '2.0.0-beta4'
 versions.androidXTest = '1.1.0'
+versions.androidXNavigation = "2.2.1"
 versions.androidXmultidex = '2.0.0'
 
 versions.supportJavaInject = '1'
@@ -53,6 +54,9 @@ androidx.lifecycleExt = "androidx.lifecycle:lifecycle-extensions:$versions.andro
 androidx.lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.androidArch"
 androidx.constraint = "androidx.constraintlayout:constraintlayout:$versions.androidXConstraintLayout"
 androidx.constraint_solver = "androidx.constraintlayout:constraintlayout-solver:$versions.androidXConstraintLayout"
+androidx.navigation_fragment =  "androidx.navigation:navigation-fragment-ktx:$versions.androidXNavigation"
+androidx.navigation_ui = "androidx.navigation:navigation-ui-ktx:$versions.androidXNavigation"
+
 androidx.runner = "androidx.test:runner:$versions.androidXTest"
 androidx.rules ="androidx.test:rules:$versions.androidXTest"
 deps.androidx = androidx

@@ -1,8 +1,10 @@
-package com.battagliandrea.beerappandroid.ui
+package com.battagliandrea.beerappandroid.ui.list
 
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.battagliandrea.beerappandroid.ui.models.BeerItemUI
+import com.battagliandrea.beerappandroid.ui.models.transform
 import com.battagliandrea.usecase.GetBeers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -10,14 +12,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-open class MainViewModel @Inject constructor(
-
+open class BeersViewModel @Inject constructor(
         private val getBeers: GetBeers
-
 ) : ViewModel() {
 
-    private val _data = MutableLiveData<MainView.Data>()
-    val data: MutableLiveData<MainView.Data> get() = _data
+    val beers = MutableLiveData<List<BeerItemUI>>()
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //          PUBLIC METHODS
@@ -26,11 +25,10 @@ open class MainViewModel @Inject constructor(
         load()
     }
 
-
     private fun load(){
         GlobalScope.launch (Dispatchers.Main) {
-            val beers = withContext(Dispatchers.IO) { getBeers() }
-            data.value = MainView.Data(beers)
+            val result = withContext(Dispatchers.IO) { getBeers() }
+            beers.postValue(result.transform())
         }
     }
 }

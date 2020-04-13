@@ -3,9 +3,12 @@ package com.battagliandrea.beerappandroid.ui
 import com.battagliandrea.domain.entity.BeerEntity
 
 
-sealed class MainView {
+sealed class BeerView {
 
-    data class Data(
+    object Idle
+    object Loading
+
+    data class ListView(
             val beers: List<BeerEntity> = listOf()
-    ): MainView()
+    ): BeerView()
 }
