@@ -37,6 +37,8 @@ dependencies {
 
     implementation deps.support.java_inject
 
+    implementation deps.google.material
+
     implementation deps.glide.runtime
     kapt  deps.glide.compiler
 

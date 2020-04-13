@@ -12,6 +12,7 @@ import com.battagliandrea.beerappandroid.R
 import com.battagliandrea.beerappandroid.ext.getViewModel
 import com.battagliandrea.beerappandroid.ext.observe
 import com.battagliandrea.beerappandroid.ui.common.ListItemUI
+import com.battagliandrea.beerappandroid.ui.common.TitleItemUI
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
@@ -57,6 +58,8 @@ class BeersFragment : Fragment() {
     }
 
     private fun renderBeers(data: List<ListItemUI>){
-        mAdapter.updateList(data)
+        val dataCopied = data.toMutableList()
+        dataCopied.add(0, TitleItemUI(text =  getString(R.string.punk_api)))
+        mAdapter.updateList(dataCopied)
     }
 }

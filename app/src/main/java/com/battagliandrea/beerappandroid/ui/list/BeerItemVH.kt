@@ -16,12 +16,6 @@ class BeerItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         tvTitle.text = item.name
         tvDescription.text = item.description
 
-        if(item.image.isNotEmpty()){
-            ivImage.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.white))
-        } else {
-            ivImage.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.colorBackground))
-        }
-
         Glide.with(this)
             .load(item.image)
             .apply(RequestOptions()

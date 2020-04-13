@@ -14,6 +14,8 @@ versions.androidXTest = '1.1.0'
 versions.androidXNavigation = "2.2.1"
 versions.androidXmultidex = '2.0.0'
 
+versions.material = '1.2.0-alpha05'
+
 versions.supportJavaInject = '1'
 
 versions.dagger = '2.16'
@@ -64,6 +66,10 @@ deps.androidx = androidx
 def support = [:]
 support.java_inject = "javax.inject:javax.inject:$versions.supportJavaInject"
 deps.support = support
+
+def google = [:]
+google.material = "com.google.android.material:material:$versions.material"
+deps.google = google
 
 def dagger = [:]
 dagger.runtime = "com.google.dagger:dagger:$versions.dagger"

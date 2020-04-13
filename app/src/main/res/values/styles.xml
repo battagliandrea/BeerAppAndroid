@@ -1,11 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <!-- BASE THEME LIGHT-->
+    <style name="BeerAppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!--THEME DEFAULT-->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryLightColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryLightColor</item>
+    </style>
+
+    <style name="TextStyle">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="TextStyle.H5" parent="TextStyle">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+    </style>
+
+    <style name="TextStyle.H6" parent="TextStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/roboto_mono_medium</item>
+    </style>
+
+    <style name="TextStyle.B1" parent="TextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/roboto_mono</item>
+    </style>
+
+    <style name="TextStyle.B2" parent="TextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/roboto_mono</item>
     </style>
 
 </resources>
