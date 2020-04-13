@@ -13,6 +13,9 @@ import kotlinx.android.synthetic.main.view_beer_item.view.*
 class BeerItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun render(item: BeerItemUI, listener: OnItemClickListener? = null) = with(itemView) {
+
+        card.transitionName = "${item.id}"
+
         tvTitle.text = item.name
         tvDescription.text = item.description
 
@@ -25,7 +28,7 @@ class BeerItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .into(ivImage)
 
         itemView.setOnClickListener {
-            listener?.onItemClick(adapterPosition, item.id)
+            listener?.onItemClick(card, item.id)
         }
     }
 }

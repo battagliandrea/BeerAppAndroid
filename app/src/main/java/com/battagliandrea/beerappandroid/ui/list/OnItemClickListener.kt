@@ -1,6 +1,8 @@
 package com.battagliandrea.beerappandroid.ui.list
 
+import android.view.View
+
 
 interface OnItemClickListener {
-    fun onItemClick(position: Int, beerId: Long)
+    fun onItemClick(view: View, beerId: Long)
 }

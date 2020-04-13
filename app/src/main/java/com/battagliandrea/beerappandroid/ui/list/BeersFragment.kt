@@ -6,13 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.battagliandrea.beerappandroid.R
 import com.battagliandrea.beerappandroid.ext.getViewModel
 import com.battagliandrea.beerappandroid.ext.observe
 import com.battagliandrea.beerappandroid.ui.common.ListItemUI
 import com.battagliandrea.beerappandroid.ui.common.TitleItemUI
+import com.google.android.material.transition.Hold
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_beers.*
 import javax.inject.Inject
@@ -27,8 +31,16 @@ class BeersFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        exitTransition = Hold()
+//    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_beers, container, false)
+        val view = inflater.inflate(R.layout.fragment_beers, container, false)
+        postponeEnterTransition()
+        view.doOnPreDraw { startPostponedEnterTransition() }
+        return view
     }
 
     override fun onAttach(context: Context) {
@@ -38,6 +50,7 @@ class BeersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         mViewModel = getViewModel<BeersViewModel>(viewModelFactory)
         with(mViewModel) {
@@ -51,10 +64,12 @@ class BeersFragment : Fragment() {
         recyclerView.adapter = mAdapter
         recyclerView.addItemDecoration(MarginItemDecorator(resources.getDimension(R.dimen.default_half_padding).toInt()))
         mAdapter.onItemClickListener = object : OnItemClickListener {
-            override fun onItemClick(position: Int, beerId: Long) {
+            override fun onItemClick(view: View, beerId: Long) {
 
                 val action = BeersFragmentDirections.actionBeersFragmentToBeerDetailsFragment(beerId)
-                findNavController().navigate(action)
+                val extras: FragmentNavigator.Extras = FragmentNavigatorExtras(view to "${beerId}")
+
+                findNavController().navigate(action, extras)
             }
         }
     }
