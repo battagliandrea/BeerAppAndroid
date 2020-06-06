@@ -3,6 +3,12 @@ package com.battagliandrea.data.repository
 import com.battagliandrea.data.datasource.PunkApiDataSource
 import com.battagliandrea.domain.entity.BeerEntity
 import com.battagliandrea.domain.repository.BeerRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,7 +24,18 @@ open class BeerRepositoryImpl @Inject constructor(
     private var isLastPage: Boolean = false
     private val beersCache: MutableList<BeerEntity> = mutableListOf()
 
-    override suspend fun get(refresh: Boolean): Pair<List<BeerEntity>, Boolean> {
+    @ExperimentalCoroutinesApi
+    private val beersChannel: ConflatedBroadcastChannel<Pair<List<BeerEntity>, Boolean>> = ConflatedBroadcastChannel()
+
+    @FlowPreview
+    @ExperimentalCoroutinesApi
+    override suspend fun observe(): Flow<Pair<List<BeerEntity>, Boolean>> {
+        return beersChannel.asFlow()
+    }
+
+    @ExperimentalCoroutinesApi
+    override suspend fun sync(refresh: Boolean) {
+
         if(refresh){
             currentPage = 1
             beersCache.clear()
@@ -31,8 +48,22 @@ open class BeerRepositoryImpl @Inject constructor(
                 currentPage += 1
                 isLastPage = remoteData.size < LIMIT_SIZE
 
-                beersCache to isLastPage
+                beersChannel.send(beersCache to isLastPage)
             }
+    }
+
+    @ExperimentalCoroutinesApi
+    override suspend fun filter(text: String) {
+        if(text.length >= 3){
+            delay(500)
+
+            punkApiDataSource.filterBeers(beerName = text)
+                .let { remoteData ->
+                    beersChannel.send(remoteData to true)
+                }
+        } else {
+            beersChannel.send(beersCache to isLastPage)
+        }
     }
 
     override suspend fun get(id: Long): BeerEntity {

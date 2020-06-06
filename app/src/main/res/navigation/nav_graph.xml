@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_beers"
-        android:name="com.battagliandrea.beerappandroid.ui.main.MainFragment"
+        android:name="com.battagliandrea.beerappandroid.ui.list.BeersFragment"
         tools:layout="@layout/fragment_beers">
 
         <action

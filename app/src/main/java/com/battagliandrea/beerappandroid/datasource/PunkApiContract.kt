@@ -12,4 +12,7 @@ interface PunkApiContract {
     @GET("v2/beers")
     suspend fun getBeers(@Query("page") page: Int, @Query("per_page") limit: Int): Response<List<BeerData>>
 
+    @GET("v2/beers")
+    suspend fun filterBeers(@Query("beer_name") beerName: String): Response<List<BeerData>>
+
 }

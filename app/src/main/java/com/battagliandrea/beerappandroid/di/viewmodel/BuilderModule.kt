@@ -3,6 +3,7 @@ package com.battagliandrea.beerappandroid.di.viewmodel
 import androidx.lifecycle.ViewModel
 import com.abdroid.jrv.core.android.dagger.ViewModelKey
 import com.battagliandrea.beerappandroid.ui.details.DetailsViewModel
+import com.battagliandrea.beerappandroid.ui.list.BeersViewModel
 import com.battagliandrea.beerappandroid.ui.main.MainViewModel
 import com.squareup.inject.assisted.dagger2.AssistedModule
 import dagger.Binds
@@ -18,6 +19,11 @@ abstract class BuilderModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     abstract fun bindMainViewModelFactory(f: MainViewModel.Factory): AssistedSavedStateViewModelFactory<out ViewModel>
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BeersViewModel::class)
+    abstract fun bindBeersViewModelFactory(f: BeersViewModel.Factory): AssistedSavedStateViewModelFactory<out ViewModel>
 
     @Binds
     @IntoMap

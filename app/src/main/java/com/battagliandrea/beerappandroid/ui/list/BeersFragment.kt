@@ -1,4 +1,4 @@
-package com.battagliandrea.beerappandroid.ui.main
+package com.battagliandrea.beerappandroid.ui.list
 
 import android.content.Context
 import android.os.Bundle
@@ -16,16 +16,16 @@ import com.battagliandrea.beerappandroid.ext.observe
 import com.battagliandrea.beerappandroid.ui.adapter.BeersAdapter
 import com.battagliandrea.beerappandroid.ui.adapter.OnItemClickListener
 import com.battagliandrea.beerappandroid.ui.base.ViewState
-import com.battagliandrea.beerappandroid.ui.items.ListItemUI
+import com.battagliandrea.beerappandroid.ui.items.base.ListItem
 import com.battagliandrea.beerappandroid.ui.utils.MarginItemDecorator
 import com.battagliandrea.beerappandroid.ui.utils.PaginationListener
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_beers.*
 import javax.inject.Inject
 
-class MainFragment : Fragment() {
+class BeersFragment : Fragment() {
 
-    private lateinit var mViewModel: MainViewModel
+    private lateinit var mViewModel: BeersViewModel
 
     @Inject
     lateinit var mAdapter: BeersAdapter
@@ -53,7 +53,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mViewModel = getViewModel<MainViewModel>(abstractFactory, savedInstanceState)
+        mViewModel = getViewModel<BeersViewModel>(abstractFactory, savedInstanceState)
         with(mViewModel) {
             observe(beersListVS){ renderBeers(it) }
         }
@@ -93,7 +93,7 @@ class MainFragment : Fragment() {
     }
 
 
-    private fun renderBeers(viewState: ViewState<List<ListItemUI>>){
+    private fun renderBeers(viewState: ViewState<List<ListItem>>){
         when(viewState){
             is ViewState.Success -> {
                 mAdapter.updateList(data = viewState.data.orEmpty())
@@ -102,7 +102,7 @@ class MainFragment : Fragment() {
                 Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
             }
             is ViewState.Loading -> {
-//                    mAdapter.showLoadingItem()
+                mAdapter.showLoadingItem()
             }
         }
     }

@@ -14,7 +14,6 @@ class PunkApiDataSourceImpl @Inject constructor(
     override suspend fun getBeer(id: Long): BeerEntity {
         return punkApiContract.getBeer(id)
             .let {
-                //TODO: check error
                 it.body()?.map()!!.first()
             }
     }
@@ -26,4 +25,10 @@ class PunkApiDataSourceImpl @Inject constructor(
             }
     }
 
+    override suspend fun filterBeers(beerName: String): List<BeerEntity> {
+        return punkApiContract.filterBeers(beerName = beerName)
+            .let {
+                it.body()?.map().orEmpty()
+            }
+    }
 }

@@ -1,12 +1,12 @@
 package com.battagliandrea.beerappandroid.ui.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.battagliandrea.beerappandroid.ui.items.ListItemUI
-import com.battagliandrea.beerappandroid.ui.items.BeerItemUI
+import com.battagliandrea.beerappandroid.ui.items.base.ListItem
+import com.battagliandrea.beerappandroid.ui.items.beer.BeerItem
 
 class  BeersDiffUtils(
-    private val oldBeers: List<ListItemUI>,
-    private val newBeers: List<ListItemUI>
+    private val oldBeers: List<ListItem>,
+    private val newBeers: List<ListItem>
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldBeers.size
@@ -21,8 +21,8 @@ class  BeersDiffUtils(
         val oldBeer = oldBeers[oldPosition]
         val newBeer = newBeers[newPosition]
         return oldBeer.id == newBeer.id
-                && oldBeer is BeerItemUI
-                && newBeer is BeerItemUI
+                && oldBeer is BeerItem
+                && newBeer is BeerItem
                 && oldBeer.name == newBeer.name
                 && oldBeer.description == newBeer.description
     }

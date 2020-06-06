@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.battagliandrea.beerappandroid.R
-import com.battagliandrea.beerappandroid.ui.items.ListItemUI
-import com.battagliandrea.beerappandroid.ui.items.BeerItemVH
-import com.battagliandrea.beerappandroid.ui.items.BeerItemUI
+import com.battagliandrea.beerappandroid.ui.items.base.ListItem
+import com.battagliandrea.beerappandroid.ui.items.beer.BeerItemVH
+import com.battagliandrea.beerappandroid.ui.items.beer.BeerItem
+import com.battagliandrea.beerappandroid.ui.items.loading.LoadingItem
+import com.battagliandrea.beerappandroid.ui.items.loading.LoadingItemVH
 import java.lang.RuntimeException
+import java.util.*
 import javax.inject.Inject
 
 
@@ -16,17 +19,22 @@ open class BeersAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerVie
 
     companion object{
         const val TYPE_BEER = 1
+        const val TYPE_LOADER = 2
     }
 
     var onItemClickListener: OnItemClickListener? = null
 
-    private var data: MutableList<ListItemUI> = mutableListOf()
+    private var data: MutableList<ListItem> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType){
             TYPE_BEER -> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.view_beer_item, parent, false)
                 BeerItemVH(view)
+            }
+            TYPE_LOADER-> {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.view_loading_item, parent, false)
+                LoadingItemVH(view)
             }
             else -> {
                 throw RuntimeException("No supported viewType")
@@ -36,7 +44,8 @@ open class BeersAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerVie
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)){
-            TYPE_BEER -> (holder as BeerItemVH).render(data[position] as BeerItemUI, onItemClickListener)
+            TYPE_BEER -> (holder as BeerItemVH).render(data[position] as BeerItem, onItemClickListener)
+            TYPE_LOADER -> (holder as LoadingItemVH).render(data[position] as LoadingItem)
             else -> {
                 throw RuntimeException("No supported viewType")
             }
@@ -53,7 +62,8 @@ open class BeersAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerVie
 
     override fun getItemViewType(position: Int): Int {
         return when(data[position]){
-            is BeerItemUI -> TYPE_BEER
+            is BeerItem -> TYPE_BEER
+            is LoadingItem -> TYPE_LOADER
             else -> -1
         }
     }
@@ -61,7 +71,7 @@ open class BeersAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerVie
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //          UTILS
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    fun updateList(data: List<ListItemUI>){
+    fun updateList(data: List<ListItem>){
         if(this.data != data){
             val diffCallback =
                 BeersDiffUtils(
@@ -73,5 +83,10 @@ open class BeersAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerVie
             this.data.addAll(data)
             diffResult.dispatchUpdatesTo(this)
         }
+    }
+
+    fun showLoadingItem(){
+        this.data.add(this.data.size, LoadingItem(id = UUID.randomUUID().hashCode().toLong()))
+        notifyItemChanged(this.data.size)
     }
 }

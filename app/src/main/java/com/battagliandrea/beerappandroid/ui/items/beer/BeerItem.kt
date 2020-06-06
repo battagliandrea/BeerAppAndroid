@@ -1,16 +1,17 @@
-package com.battagliandrea.beerappandroid.ui.items
+package com.battagliandrea.beerappandroid.ui.items.beer
 
+import com.battagliandrea.beerappandroid.ui.items.base.ListItem
 import com.battagliandrea.domain.entity.BeerEntity
 
-data class BeerItemUI (
+data class BeerItem (
     override var id : Long = 0L,
     var name : String = "",
     var tagline : String = "",
     var description : String = "",
     var image: String = ""
-) : ListItemUI()
+) : ListItem()
 
-fun List<BeerEntity>.toItemModels(): List<BeerItemUI>{
+fun List<BeerEntity>.toItemModels(): List<BeerItem>{
     return this
         .asSequence()
         .filterNotNull()
@@ -18,8 +19,8 @@ fun List<BeerEntity>.toItemModels(): List<BeerItemUI>{
         .toList()
 }
 
-fun BeerEntity.toItemModel(): BeerItemUI {
-    return BeerItemUI(
+fun BeerEntity.toItemModel(): BeerItem {
+    return BeerItem(
         id = this.id,
         name = this.name,
         tagline = this.tagline,
