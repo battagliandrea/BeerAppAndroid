@@ -1,6 +1,6 @@
 package com.battagliandrea.beerappandroid.datasource
 
-import com.battagliandrea.data.entity.BeerData
+import com.battagliandrea.data.models.BeerData
 import retrofit2.Response
 import retrofit2.http.*
 

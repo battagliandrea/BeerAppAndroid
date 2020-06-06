@@ -15,6 +15,6 @@
         android:layout_height="wrap_content"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textAppearance="@style/TextStyle.H5"
+        android:textAppearance="@style/TextStyle.B2.Body"
         tools:text="Title" />
 </FrameLayout>

@@ -67,16 +67,14 @@ class BeersFragment : Fragment() {
             override fun onItemClick(view: View, beerId: Long) {
 
                 val action = BeersFragmentDirections.actionBeersFragmentToBeerDetailsFragment(beerId)
-                val extras: FragmentNavigator.Extras = FragmentNavigatorExtras(view to "${beerId}")
+//                val extras: FragmentNavigator.Extras = FragmentNavigatorExtras(view to "${beerId}")
 
-                findNavController().navigate(action, extras)
+//                findNavController().navigate(action)
             }
         }
     }
 
     private fun renderBeers(data: List<ListItemUI>){
-        val dataCopied = data.toMutableList()
-        dataCopied.add(0, TitleItemUI(text =  getString(R.string.punk_api)))
-        mAdapter.updateList(dataCopied)
+        mAdapter.updateList(data)
     }
 }

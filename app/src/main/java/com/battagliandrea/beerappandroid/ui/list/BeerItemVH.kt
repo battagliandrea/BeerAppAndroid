@@ -14,9 +14,10 @@ class BeerItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun render(item: BeerItemUI, listener: OnItemClickListener? = null) = with(itemView) {
 
-        card.transitionName = "${item.id}"
+//        card.transitionName = "${item.id}"
 
         tvTitle.text = item.name
+        tvTagline.text = item.tagline
         tvDescription.text = item.description
 
         Glide.with(this)
@@ -28,7 +29,7 @@ class BeerItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .into(ivImage)
 
         itemView.setOnClickListener {
-            listener?.onItemClick(card, item.id)
+            listener?.onItemClick(ivImage, item.id)
         }
     }
 }

@@ -39,21 +39,21 @@ class BeerDetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        postponeEnterTransition()
+//        postponeEnterTransition()
 
-        val transformationEnter: MaterialContainerTransform = MaterialContainerTransform(requireContext()).apply {
-            fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
-            duration = 1000
-            scrimColor = android.R.color.transparent
-        }
-        sharedElementEnterTransition = transformationEnter
-
-        val transformationReturn: MaterialContainerTransform = MaterialContainerTransform(requireContext()).apply {
-            fadeMode = MaterialContainerTransform.FADE_MODE_IN
-            duration = 500
-            scrimColor = android.R.color.transparent
-        }
-        sharedElementReturnTransition = transformationReturn
+//        val transformationEnter: MaterialContainerTransform = MaterialContainerTransform(requireContext()).apply {
+//            fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
+//            duration = 1000
+//            scrimColor = android.R.color.transparent
+//        }
+//        sharedElementEnterTransition = transformationEnter
+//
+//        val transformationReturn: MaterialContainerTransform = MaterialContainerTransform(requireContext()).apply {
+//            fadeMode = MaterialContainerTransform.FADE_MODE_IN
+//            duration = 500
+//            scrimColor = android.R.color.transparent
+//        }
+//        sharedElementReturnTransition = transformationReturn
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -81,22 +81,22 @@ class BeerDetailsFragment : Fragment() {
         tvTitle.text = model.name
         tvDescription.text = model.description
 
-        Glide.with(this)
-            .load(model.image)
-            .apply(RequestOptions()
-                .centerInside()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .dontAnimate())
-            .listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                    return false
-                }
-
-                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: com.bumptech.glide.load.DataSource?, isFirstResource: Boolean): Boolean {
-                    startPostponedEnterTransition()
-                    return false
-                }
-            })
-            .into(ivImage)
+//        Glide.with(this)
+//            .load(model.image)
+//            .apply(RequestOptions()
+//                .centerInside()
+//                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                .dontAnimate())
+//            .listener(object : RequestListener<Drawable> {
+//                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+//                    return false
+//                }
+//
+//                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: com.bumptech.glide.load.DataSource?, isFirstResource: Boolean): Boolean {
+//                    startPostponedEnterTransition()
+//                    return false
+//                }
+//            })
+//            .into(ivImage)
     }
 }

@@ -1,7 +1,7 @@
 package com.battagliandrea.beerappandroid.datasource
 
 import com.battagliandrea.data.datasource.PunkApiDataSource
-import com.battagliandrea.data.entity.map
+import com.battagliandrea.data.models.map
 import com.battagliandrea.domain.entity.BeerEntity
 import javax.inject.Inject
 import javax.inject.Singleton

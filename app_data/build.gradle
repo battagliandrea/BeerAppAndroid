@@ -8,6 +8,8 @@ dependencies {
     implementation deps.kotlin.stdlib
     implementation deps.kotlin.coroutines_core
 
+    implementation deps.gson.runtime
+
     api deps.support.java_inject
 }
 
