@@ -1,4 +1,4 @@
-package com.battagliandrea.beerappandroid.di.module
+package com.battagliandrea.beerappandroid.di.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

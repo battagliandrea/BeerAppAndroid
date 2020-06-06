@@ -1,4 +1,6 @@
-package com.battagliandrea.beerappandroid.di.module
+package com.battagliandrea.beerappandroid.di.module.data
+
+
 
 import com.battagliandrea.data.repository.BeerRepositoryImpl
 import com.battagliandrea.domain.repository.BeerRepository
@@ -11,7 +13,5 @@ open class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideBeerRepository(r: BeerRepositoryImpl): BeerRepository = r
-
-
+    fun provideBeerRepository(ds: BeerRepositoryImpl): BeerRepository = ds
 }

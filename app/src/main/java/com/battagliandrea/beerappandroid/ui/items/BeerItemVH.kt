@@ -1,10 +1,8 @@
-package com.battagliandrea.beerappandroid.ui.list
+package com.battagliandrea.beerappandroid.ui.items
 
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.battagliandrea.beerappandroid.R
-import com.battagliandrea.beerappandroid.ui.models.BeerItemUI
+import com.battagliandrea.beerappandroid.ui.list.OnItemClickListener
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions

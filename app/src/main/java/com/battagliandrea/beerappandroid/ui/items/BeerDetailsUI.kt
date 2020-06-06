@@ -1,7 +1,5 @@
-package com.battagliandrea.beerappandroid.ui.models
+package com.battagliandrea.beerappandroid.ui.items
 
-import android.graphics.Color
-import com.battagliandrea.beerappandroid.ui.common.ListItemUI
 import com.battagliandrea.domain.entity.BeerEntity
 
 data class BeerDetailsUI (
@@ -11,7 +9,7 @@ data class BeerDetailsUI (
     var image: String = String()
 ) : ListItemUI()
 
-fun BeerEntity.toDetailsModel(): BeerDetailsUI{
+fun BeerEntity.toDetailsModel(): BeerDetailsUI {
     return BeerDetailsUI(
         id = this.id,
         name = this.name,

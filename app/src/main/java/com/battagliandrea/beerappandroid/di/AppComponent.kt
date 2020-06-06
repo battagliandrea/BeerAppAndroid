@@ -1,9 +1,13 @@
 package com.battagliandrea.beerappandroid.di
 
 import android.app.Application
-import com.battagliandrea.beerappandroid.di.module.ActivityModule
-import com.battagliandrea.beerappandroid.di.module.FragmentModule
+import com.battagliandrea.beerappandroid.di.module.binding.ActivityModule
+import com.battagliandrea.beerappandroid.di.module.binding.FragmentModule
 import com.battagliandrea.beerappandroid.di.module.*
+import com.battagliandrea.beerappandroid.di.module.data.DataSourceModule
+import com.battagliandrea.beerappandroid.di.module.data.RepositoryModule
+import com.battagliandrea.beerappandroid.di.module.framework.RetrofitModule
+import com.battagliandrea.beerappandroid.di.viewmodel.BuilderModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -14,13 +18,13 @@ import javax.inject.Singleton
 @Singleton
 @Component(
         modules = [
-            AppModule::class,
+            UtilsModule::class,
             ActivityModule::class,
             FragmentModule::class,
-            ViewModelModule::class,
+            BuilderModule::class,
             RepositoryModule::class,
             DataSourceModule::class,
-            FrameworkModule::class,
+            RetrofitModule::class,
             AndroidSupportInjectionModule::class
         ]
 )
@@ -34,7 +38,7 @@ interface AppComponent : AndroidInjector<DaggerApplication> {
         @BindsInstance
         fun application(app: Application): Builder
 
-        fun frameworkModule(module: FrameworkModule): Builder
+        fun retrofitModule(module: RetrofitModule): Builder
 
         fun build(): AppComponent
     }

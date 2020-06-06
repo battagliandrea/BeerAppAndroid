@@ -1,6 +1,6 @@
-package com.battagliandrea.beerappandroid.di.module
+package com.battagliandrea.beerappandroid.di.module.binding
 
-import com.battagliandrea.beerappandroid.ui.BeersActivity
+import com.battagliandrea.beerappandroid.ui.MainActivity
 import com.battagliandrea.beerappandroid.di.scope.ActivityScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -10,6 +10,6 @@ abstract class ActivityModule {
 
     @ActivityScope
     @ContributesAndroidInjector
-    abstract fun beersActivity(): BeersActivity
+    abstract fun beersActivity(): MainActivity
 
 }

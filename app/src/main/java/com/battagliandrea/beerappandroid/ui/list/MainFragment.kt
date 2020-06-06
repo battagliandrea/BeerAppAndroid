@@ -8,28 +8,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.doOnPreDraw
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.FragmentNavigator
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
 import com.battagliandrea.beerappandroid.R
+import com.battagliandrea.beerappandroid.di.viewmodel.InjectingSavedStateViewModelFactory
 import com.battagliandrea.beerappandroid.ext.getViewModel
 import com.battagliandrea.beerappandroid.ext.observe
-import com.battagliandrea.beerappandroid.ui.common.ListItemUI
-import com.battagliandrea.beerappandroid.ui.common.TitleItemUI
-import com.google.android.material.transition.Hold
+import com.battagliandrea.beerappandroid.ui.adapter.BeersAdapter
+import com.battagliandrea.beerappandroid.ui.items.ListItemUI
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_beers.*
 import javax.inject.Inject
 
-class BeersFragment : Fragment() {
+class MainFragment : Fragment() {
 
-    private lateinit var mViewModel: BeersViewModel
+    private lateinit var mViewModel: MainViewModel
 
     @Inject
     lateinit var mAdapter: BeersAdapter
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var abstractFactory: InjectingSavedStateViewModelFactory
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
@@ -51,8 +48,7 @@ class BeersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        mViewModel = getViewModel<BeersViewModel>(viewModelFactory)
+        mViewModel = getViewModel<MainViewModel>(abstractFactory, savedInstanceState)
         with(mViewModel) {
             observe(beers){ renderBeers(it) }
         }
@@ -66,7 +62,7 @@ class BeersFragment : Fragment() {
         mAdapter.onItemClickListener = object : OnItemClickListener {
             override fun onItemClick(view: View, beerId: Long) {
 
-                val action = BeersFragmentDirections.actionBeersFragmentToBeerDetailsFragment(beerId)
+//                val action = BeersFragmentDirections.actionBeersFragmentToBeerDetailsFragment(beerId)
 //                val extras: FragmentNavigator.Extras = FragmentNavigatorExtras(view to "${beerId}")
 
 //                findNavController().navigate(action)

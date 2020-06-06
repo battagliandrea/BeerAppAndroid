@@ -1,12 +1,9 @@
-package com.battagliandrea.beerappandroid.di.module
+package com.battagliandrea.beerappandroid.di.module.framework
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.util.Log
 import com.battagliandrea.beerappandroid.BuildConfig
 import com.battagliandrea.beerappandroid.datasource.PunkApiContract
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -14,19 +11,11 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Named
 import javax.inject.Singleton
 
 
 @Module
-open class FrameworkModule {
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //          GSON
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @Provides
-    @Singleton
-    fun provideGson(): Gson = GsonBuilder().create()
+open class RetrofitModule {
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,7 +43,7 @@ open class FrameworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient) =
-            createRetrofit(gson, okHttpClient, "https://api.punkapi.com/")
+            createRetrofit(gson, okHttpClient, BuildConfig.apiBaseUrl)
 
 
     @Provides

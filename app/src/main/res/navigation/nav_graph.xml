@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_beers"
-        android:name="com.battagliandrea.beerappandroid.ui.list.BeersFragment"
+        android:name="com.battagliandrea.beerappandroid.ui.list.MainFragment"
         android:label="Nav Fragment One"
         tools:layout="@layout/fragment_beers">
 
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/fragment_details"
-        android:name="com.battagliandrea.beerappandroid.ui.details.BeerDetailsFragment"
+        android:name="com.battagliandrea.beerappandroid.ui.details.DetailsFragment"
         android:label="Beer Detail"
         tools:layout="@layout/fragment_beer_details">
 

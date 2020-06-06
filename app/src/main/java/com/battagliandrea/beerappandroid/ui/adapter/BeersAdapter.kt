@@ -1,14 +1,16 @@
-package com.battagliandrea.beerappandroid.ui.list
+package com.battagliandrea.beerappandroid.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.battagliandrea.beerappandroid.R
-import com.battagliandrea.beerappandroid.ui.common.ListItemUI
-import com.battagliandrea.beerappandroid.ui.common.TitleItemUI
-import com.battagliandrea.beerappandroid.ui.common.TitleItemVH
-import com.battagliandrea.beerappandroid.ui.models.BeerItemUI
+import com.battagliandrea.beerappandroid.ui.items.ListItemUI
+import com.battagliandrea.beerappandroid.ui.items.TitleItemUI
+import com.battagliandrea.beerappandroid.ui.items.TitleItemVH
+import com.battagliandrea.beerappandroid.ui.items.BeerItemVH
+import com.battagliandrea.beerappandroid.ui.list.OnItemClickListener
+import com.battagliandrea.beerappandroid.ui.items.BeerItemUI
 import java.lang.RuntimeException
 import javax.inject.Inject
 
@@ -71,7 +73,11 @@ open class BeersAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerVie
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     fun updateList(data: List<ListItemUI>){
         if(this.data != data){
-            val diffCallback = BeersDiffUtils(this.data, data)
+            val diffCallback =
+                BeersDiffUtils(
+                    this.data,
+                    data
+                )
             val diffResult = DiffUtil.calculateDiff(diffCallback)
             this.data.clear()
             this.data.addAll(data)
