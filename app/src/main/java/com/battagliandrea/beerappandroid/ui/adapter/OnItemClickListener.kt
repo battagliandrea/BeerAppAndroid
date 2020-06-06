@@ -1,4 +1,4 @@
-package com.battagliandrea.beerappandroid.ui.list
+package com.battagliandrea.beerappandroid.ui.adapter
 
 import android.view.View
 

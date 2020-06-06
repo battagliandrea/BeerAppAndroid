@@ -2,35 +2,55 @@
 <resources>
 
     <!-- BASE THEME LIGHT-->
-    <style name="BeerAppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="BeerAppTheme" parent="Theme.MaterialComponents.NoActionBar">
 
         <!--THEME DEFAULT-->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryVariant">@color/primaryLightColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-
-        <item name="colorSecondary">@color/secondaryColor</item>
-        <item name="colorSecondaryVariant">@color/secondaryLightColor</item>
+        <item name="colorPrimaryDark">@color/primaryColor</item>
+        <item name="colorAccent">@color/orange</item>
+        <item name="backgroundColor">@color/primaryColor</item>
     </style>
 
     <style name="TextStyle">
         <item name="android:background">?attr/colorSurface</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 
-    <style name="TextStyle.B1.Header" parent="TextStyle">
+    <style name="TextPrimary.H5.Header" parent="TextStyle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/whiteAlpha87</item>
+        <item name="fontFamily">@font/raleway_extrabold</item>
+    </style>
+
+    <style name="TextPrimary.B1.Header" parent="TextStyle">
         <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/whiteAlpha87</item>
         <item name="fontFamily">@font/raleway_semibold</item>
     </style>
 
-    <style name="TextStyle.B2.Button" parent="TextStyle">
+    <style name="TextPrimary.B2.Button" parent="TextStyle">
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/orange</item>
         <item name="android:textAllCaps">true</item>
         <item name="fontFamily">@font/raleway</item>
     </style>
 
-    <style name="TextStyle.B2.Body" parent="TextStyle">
+    <style name="TextPrimary.B2.Body" parent="TextStyle">
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/whiteAlpha60</item>
+        <item name="fontFamily">@font/raleway_medium</item>
+    </style>
+
+
+    <style name="TextSecondary.B1.Header" parent="TextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/blackAlpha87</item>
+        <item name="fontFamily">@font/raleway_semibold</item>
+    </style>
+
+    <style name="TextSecondary.B2.Body" parent="TextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/blackAlpha60</item>
         <item name="fontFamily">@font/raleway_medium</item>
     </style>
 

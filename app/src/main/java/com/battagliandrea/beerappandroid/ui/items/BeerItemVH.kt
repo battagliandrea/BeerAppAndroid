@@ -2,7 +2,7 @@ package com.battagliandrea.beerappandroid.ui.items
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.battagliandrea.beerappandroid.ui.list.OnItemClickListener
+import com.battagliandrea.beerappandroid.ui.adapter.OnItemClickListener
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -14,7 +14,7 @@ class BeerItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 //        card.transitionName = "${item.id}"
 
-        tvTitle.text = item.name
+        tvTitle.text = "${item.id}. ${item.name}"
         tvTagline.text = item.tagline
         tvDescription.text = item.description
 

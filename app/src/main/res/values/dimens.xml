@@ -6,5 +6,7 @@
     <dimen name="default_padding">16dp</dimen>
     <dimen name="default_double_padding">32dp</dimen>
 
+    <dimen name="tall_toolbar_height">200dp</dimen>
+
 
 </resources>

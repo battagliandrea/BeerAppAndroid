@@ -2,7 +2,12 @@
 
     <string name="punk_api">Punk API V2</string>
 
+    <string name="title">Beer Box</string>
+    <string name="search">Search</string>
     <string name="more_info">more info</string>
+    <string name="badge_title">Weekend Offers</string>
+    <string name="badge_description">Free shipping on orders over 60€</string>
+
 
 </resources>
 

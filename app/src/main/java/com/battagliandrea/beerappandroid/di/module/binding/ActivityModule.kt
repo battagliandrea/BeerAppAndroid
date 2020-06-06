@@ -1,6 +1,6 @@
 package com.battagliandrea.beerappandroid.di.module.binding
 
-import com.battagliandrea.beerappandroid.ui.MainActivity
+import com.battagliandrea.beerappandroid.ui.main.MainActivity
 import com.battagliandrea.beerappandroid.di.scope.ActivityScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

@@ -1,4 +1,4 @@
-package com.battagliandrea.beerappandroid.ui.list
+package com.battagliandrea.beerappandroid.ui.main
 
 import android.content.Context
 import android.os.Bundle
@@ -6,14 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.doOnPreDraw
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.battagliandrea.beerappandroid.R
 import com.battagliandrea.beerappandroid.di.viewmodel.InjectingSavedStateViewModelFactory
 import com.battagliandrea.beerappandroid.ext.getViewModel
 import com.battagliandrea.beerappandroid.ext.observe
 import com.battagliandrea.beerappandroid.ui.adapter.BeersAdapter
+import com.battagliandrea.beerappandroid.ui.adapter.OnItemClickListener
+import com.battagliandrea.beerappandroid.ui.base.ViewState
 import com.battagliandrea.beerappandroid.ui.items.ListItemUI
+import com.battagliandrea.beerappandroid.ui.utils.MarginItemDecorator
+import com.battagliandrea.beerappandroid.ui.utils.PaginationListener
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_beers.*
 import javax.inject.Inject
@@ -50,7 +55,7 @@ class MainFragment : Fragment() {
 
         mViewModel = getViewModel<MainViewModel>(abstractFactory, savedInstanceState)
         with(mViewModel) {
-            observe(beers){ renderBeers(it) }
+            observe(beersListVS){ renderBeers(it) }
         }
 
         setupList()
@@ -58,8 +63,25 @@ class MainFragment : Fragment() {
 
     private fun setupList(){
         recyclerView.adapter = mAdapter
-        recyclerView.addItemDecoration(MarginItemDecorator(resources.getDimension(R.dimen.default_half_padding).toInt()))
-        mAdapter.onItemClickListener = object : OnItemClickListener {
+        recyclerView.addItemDecoration(MarginItemDecorator(resources.getDimension(R.dimen.default_padding).toInt()))
+
+        val lm = recyclerView.layoutManager as LinearLayoutManager
+        recyclerView.addOnScrollListener(object : PaginationListener(lm) {
+            override fun loadMoreItems() {
+                mViewModel.load()
+            }
+
+            override fun isLastPage(): Boolean {
+                return mViewModel.isLastPage
+            }
+
+            override fun isLoading(): Boolean {
+                return mViewModel.isLoading
+            }
+        })
+
+        mAdapter.onItemClickListener = object :
+            OnItemClickListener {
             override fun onItemClick(view: View, beerId: Long) {
 
 //                val action = BeersFragmentDirections.actionBeersFragmentToBeerDetailsFragment(beerId)
@@ -70,7 +92,19 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun renderBeers(data: List<ListItemUI>){
-        mAdapter.updateList(data)
+
+    private fun renderBeers(viewState: ViewState<List<ListItemUI>>){
+        when(viewState){
+            is ViewState.Success -> {
+                mAdapter.updateList(data = viewState.data.orEmpty())
+            }
+            is ViewState.Error -> {
+                Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
+            }
+            is ViewState.Loading -> {
+//                    mAdapter.showLoadingItem()
+            }
+        }
     }
+
 }

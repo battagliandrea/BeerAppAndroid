@@ -7,8 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_beers"
-        android:name="com.battagliandrea.beerappandroid.ui.list.MainFragment"
-        android:label="Nav Fragment One"
+        android:name="com.battagliandrea.beerappandroid.ui.main.MainFragment"
         tools:layout="@layout/fragment_beers">
 
         <action
@@ -24,7 +23,6 @@
     <fragment
         android:id="@+id/fragment_details"
         android:name="com.battagliandrea.beerappandroid.ui.details.DetailsFragment"
-        android:label="Beer Detail"
         tools:layout="@layout/fragment_beer_details">
 
         <argument

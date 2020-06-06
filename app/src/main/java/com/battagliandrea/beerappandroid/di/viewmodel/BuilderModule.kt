@@ -3,7 +3,7 @@ package com.battagliandrea.beerappandroid.di.viewmodel
 import androidx.lifecycle.ViewModel
 import com.abdroid.jrv.core.android.dagger.ViewModelKey
 import com.battagliandrea.beerappandroid.ui.details.DetailsViewModel
-import com.battagliandrea.beerappandroid.ui.list.MainViewModel
+import com.battagliandrea.beerappandroid.ui.main.MainViewModel
 import com.squareup.inject.assisted.dagger2.AssistedModule
 import dagger.Binds
 import dagger.Module

@@ -8,8 +8,8 @@ class GetBeers @Inject constructor(
         private val beerRepository: BeerRepository
 ){
 
-    suspend operator fun invoke() : List<BeerEntity>{
-        return beerRepository.get()
+    suspend operator fun invoke(refresh: Boolean) : Pair<List<BeerEntity>, Boolean>{
+        return beerRepository.get(refresh)
     }
 }
 

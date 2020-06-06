@@ -19,8 +19,8 @@ class PunkApiDataSourceImpl @Inject constructor(
             }
     }
 
-    override suspend fun getBeers(): List<BeerEntity> {
-        return punkApiContract.getBeers()
+    override suspend fun getBeers(page: Int, limit: Int): List<BeerEntity> {
+        return punkApiContract.getBeers(page = page, limit = limit)
             .let {
                 it.body()?.map().orEmpty()
             }

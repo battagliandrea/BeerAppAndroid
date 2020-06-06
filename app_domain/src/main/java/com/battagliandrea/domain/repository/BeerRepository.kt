@@ -5,6 +5,6 @@ import com.battagliandrea.domain.entity.BeerEntity
 
 interface BeerRepository {
 
-    suspend fun get(): List<BeerEntity>
+    suspend fun get(refresh: Boolean): Pair<List<BeerEntity>, Boolean>
     suspend fun get(id: Long): BeerEntity
 }
