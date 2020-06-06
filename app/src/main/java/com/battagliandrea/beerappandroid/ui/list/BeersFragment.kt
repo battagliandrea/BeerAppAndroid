@@ -8,13 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.doOnPreDraw
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.battagliandrea.beerappandroid.R
 import com.battagliandrea.beerappandroid.di.viewmodel.InjectingSavedStateViewModelFactory
 import com.battagliandrea.beerappandroid.ext.getViewModel
 import com.battagliandrea.beerappandroid.ext.observe
 import com.battagliandrea.beerappandroid.ui.adapter.BeersAdapter
-import com.battagliandrea.beerappandroid.ui.adapter.OnItemClickListener
+import com.battagliandrea.beerappandroid.ui.items.beer.OnBeerClickListener
 import com.battagliandrea.beerappandroid.ui.base.ViewState
 import com.battagliandrea.beerappandroid.ui.items.base.ListItem
 import com.battagliandrea.beerappandroid.ui.utils.MarginItemDecorator
@@ -33,16 +36,8 @@ class BeersFragment : Fragment() {
     @Inject
     lateinit var abstractFactory: InjectingSavedStateViewModelFactory
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        exitTransition = Hold()
-//    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_beers, container, false)
-        postponeEnterTransition()
-        view.doOnPreDraw { startPostponedEnterTransition() }
-        return view
+        return inflater.inflate(R.layout.fragment_beers, container, false)
     }
 
     override fun onAttach(context: Context) {
@@ -80,14 +75,11 @@ class BeersFragment : Fragment() {
             }
         })
 
-        mAdapter.onItemClickListener = object :
-            OnItemClickListener {
-            override fun onItemClick(view: View, beerId: Long) {
-
-//                val action = BeersFragmentDirections.actionBeersFragmentToBeerDetailsFragment(beerId)
-//                val extras: FragmentNavigator.Extras = FragmentNavigatorExtras(view to "${beerId}")
-
-//                findNavController().navigate(action)
+        mAdapter.onBeerClickListener = object :
+            OnBeerClickListener {
+            override fun onItemClick(beerId: Long) {
+                val action = BeersFragmentDirections.actionBeersFragmentToBeerDetailsFragment(beerId)
+                findNavController().navigate(action)
             }
         }
     }

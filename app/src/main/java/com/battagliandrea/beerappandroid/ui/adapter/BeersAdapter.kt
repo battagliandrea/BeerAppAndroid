@@ -8,6 +8,7 @@ import com.battagliandrea.beerappandroid.R
 import com.battagliandrea.beerappandroid.ui.items.base.ListItem
 import com.battagliandrea.beerappandroid.ui.items.beer.BeerItemVH
 import com.battagliandrea.beerappandroid.ui.items.beer.BeerItem
+import com.battagliandrea.beerappandroid.ui.items.beer.OnBeerClickListener
 import com.battagliandrea.beerappandroid.ui.items.loading.LoadingItem
 import com.battagliandrea.beerappandroid.ui.items.loading.LoadingItemVH
 import java.lang.RuntimeException
@@ -22,7 +23,7 @@ open class BeersAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerVie
         const val TYPE_LOADER = 2
     }
 
-    var onItemClickListener: OnItemClickListener? = null
+    var onBeerClickListener: OnBeerClickListener? = null
 
     private var data: MutableList<ListItem> = mutableListOf()
 
@@ -44,7 +45,7 @@ open class BeersAdapter @Inject constructor() : RecyclerView.Adapter<RecyclerVie
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(getItemViewType(position)){
-            TYPE_BEER -> (holder as BeerItemVH).render(data[position] as BeerItem, onItemClickListener)
+            TYPE_BEER -> (holder as BeerItemVH).render(data[position] as BeerItem, onBeerClickListener)
             TYPE_LOADER -> (holder as LoadingItemVH).render(data[position] as LoadingItem)
             else -> {
                 throw RuntimeException("No supported viewType")

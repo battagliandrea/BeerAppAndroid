@@ -69,4 +69,9 @@ open class BeersViewModel @AssistedInject constructor(
             }
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
+    }
 }

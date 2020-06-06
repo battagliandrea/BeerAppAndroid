@@ -38,4 +38,9 @@ open class MainViewModel @AssistedInject constructor(
             }
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
+    }
 }

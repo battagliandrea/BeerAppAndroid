@@ -1,48 +1,34 @@
 package com.battagliandrea.beerappandroid.ui.details
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.battagliandrea.beerappandroid.R
 import com.battagliandrea.beerappandroid.di.viewmodel.InjectingSavedStateViewModelFactory
+import com.battagliandrea.beerappandroid.ext.getViewModel
+import com.battagliandrea.beerappandroid.ext.observe
+import com.battagliandrea.beerappandroid.ui.base.ViewState
+import com.battagliandrea.domain.entity.BeerEntity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_beer_details.*
 import javax.inject.Inject
 
-class DetailsFragment : Fragment() {
+class DetailsFragment : BottomSheetDialogFragment() {
 
     private lateinit var mViewModel: DetailsViewModel
 
-//    val args: BeerDetailsFragmentArgs by navArgs()
+    val args: DetailsFragmentArgs by navArgs()
 
     @Inject
     lateinit var abstractFactory: InjectingSavedStateViewModelFactory
-
-    @SuppressLint("ResourceAsColor")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-//        postponeEnterTransition()
-
-//        val transformationEnter: MaterialContainerTransform = MaterialContainerTransform(requireContext()).apply {
-//            fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
-//            duration = 1000
-//            scrimColor = android.R.color.transparent
-//        }
-//        sharedElementEnterTransition = transformationEnter
-//
-//        val transformationReturn: MaterialContainerTransform = MaterialContainerTransform(requireContext()).apply {
-//            fadeMode = MaterialContainerTransform.FADE_MODE_IN
-//            duration = 500
-//            scrimColor = android.R.color.transparent
-//        }
-//        sharedElementReturnTransition = transformationReturn
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_beer_details, container, false)
@@ -56,35 +42,38 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        view.transitionName = "${args.beerId}"
-//
-//        mViewModel = getViewModel(viewModelFactory)
-//        mViewModel.load(args.beerId)
-//        with(mViewModel) {
-//            observe(beer){ renderBeer(it) }
-//        }
+        ivImage.transitionName = "${args.beerId}"
+
+        mViewModel = getViewModel<DetailsViewModel>(abstractFactory, savedInstanceState)
+        mViewModel.load(args.beerId)
+        with(mViewModel) {
+            observe(beerVS){ renderBeer(it) }
+        }
     }
 
-//    private fun renderBeer(model: BeerDetailsUI){
-//        tvTitle.text = model.name
-//        tvDescription.text = model.description
-//
-////        Glide.with(this)
-////            .load(model.image)
-////            .apply(RequestOptions()
-////                .centerInside()
-////                .diskCacheStrategy(DiskCacheStrategy.NONE)
-////                .dontAnimate())
-////            .listener(object : RequestListener<Drawable> {
-////                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-////                    return false
-////                }
-////
-////                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: com.bumptech.glide.load.DataSource?, isFirstResource: Boolean): Boolean {
-////                    startPostponedEnterTransition()
-////                    return false
-////                }
-////            })
-////            .into(ivImage)
-//    }
+    private fun renderBeer(viewState: ViewState<BeerEntity>){
+        when(viewState){
+            is ViewState.Success -> {
+
+                val model = viewState.data
+
+                tvTitle.text = "${model?.id}. ${model?.name}"
+                tvDescription.text = model?.description
+                tvTagline.text = model?.tagline
+
+                Glide.with(this)
+                    .load(model?.imageUrl)
+                    .apply(RequestOptions()
+                        .centerInside()
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                        .dontAnimate())
+                    .into(ivImage)
+            }
+            is ViewState.Error -> {
+                Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+    }
 }

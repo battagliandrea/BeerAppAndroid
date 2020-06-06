@@ -2,8 +2,6 @@ package com.battagliandrea.beerappandroid.ui.items.beer
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.battagliandrea.beerappandroid.ui.adapter.OnItemClickListener
-import com.battagliandrea.beerappandroid.ui.items.beer.BeerItem
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -11,9 +9,7 @@ import kotlinx.android.synthetic.main.view_beer_item.view.*
 
 class BeerItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun render(item: BeerItem, listener: OnItemClickListener? = null) = with(itemView) {
-
-//        card.transitionName = "${item.id}"
+    fun render(item: BeerItem, listener: OnBeerClickListener? = null) = with(itemView) {
 
         tvTitle.text = "${item.id}. ${item.name}"
         tvTagline.text = item.tagline
@@ -28,7 +24,7 @@ class BeerItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .into(ivImage)
 
         itemView.setOnClickListener {
-            listener?.onItemClick(ivImage, item.id)
+            listener?.onItemClick(item.id)
         }
     }
 }

@@ -20,7 +20,7 @@
         </action>
     </fragment>
 
-    <fragment
+    <dialog
         android:id="@+id/fragment_details"
         android:name="com.battagliandrea.beerappandroid.ui.details.DetailsFragment"
         tools:layout="@layout/fragment_beer_details">
@@ -28,6 +28,6 @@
         <argument
             android:name="beerId"
             app:argType="long"/>
-    </fragment>
+    </dialog>
 
 </navigation>

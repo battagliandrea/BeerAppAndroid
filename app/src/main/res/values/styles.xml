@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- BASE THEME LIGHT-->
+    <!-- BASE THEME-->
     <style name="BeerAppTheme" parent="Theme.MaterialComponents.NoActionBar">
 
         <!--THEME DEFAULT-->
@@ -10,6 +10,18 @@
         <item name="colorPrimaryDark">@color/primaryColor</item>
         <item name="colorAccent">@color/orange</item>
         <item name="backgroundColor">@color/primaryColor</item>
+
+        <item name="bottomSheetDialogTheme">@style/BeerAppBottomSheetDialogTheme</item>
+    </style>
+
+    <!-- BOTTOM SHEET THEME -->
+    <style name="BeerAppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/background_rounded_corner_top_primary</item>
     </style>
 
     <style name="TextStyle">
@@ -20,6 +32,12 @@
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/whiteAlpha87</item>
         <item name="fontFamily">@font/raleway_extrabold</item>
+    </style>
+
+    <style name="TextPrimary.H6.Header" parent="TextStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/whiteAlpha87</item>
+        <item name="fontFamily">@font/raleway_semibold</item>
     </style>
 
     <style name="TextPrimary.B1.Header" parent="TextStyle">
