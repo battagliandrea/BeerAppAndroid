@@ -1,11 +1,12 @@
 # Beer App
-I used the punkapi to create a sample application in order to analyze and to study the basic principles of clean architecture on Android. The application is divided into four modules.
+I used Punkapi(https://punkapi.com/documentation/v2) to create a sample application in order to analyze and to study the basic principles of clean architecture on Android. The application is divided into four modules.
 
 - app: Android module with the UI and datasources implementation
 - app_data: Kotlin module with the datasources interface and repositories implementation
 - app_domain: Kotlin module with entities implementation and repositories interfaces
 - app_usecase: Kotlin module with use cases implementation
 
+![Screen 1](https://github.com/battagliandrea/BeerAppAndroid/blob/master/image/screen.gif) 
 
 # Import project
 - open your **Terminal** app
@@ -14,6 +15,7 @@ I used the punkapi to create a sample application in order to analyze and to stu
 - select **Import Project from Gradle**
 
 # Download apk
+https://github.com/battagliandrea/BeerAppAndroid/blob/master/app/prod/release/app-prod-release.apk
 
 # Project specifications
 - Kotlin
