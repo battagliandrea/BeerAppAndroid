@@ -3,7 +3,7 @@ package com.battagliandrea.usecase
 import com.battagliandrea.domain.repository.BeerRepository
 import javax.inject.Inject
 
-class FilterBeers @Inject constructor(
+class GerBeersByName @Inject constructor(
         private val beerRepository: BeerRepository
 ){
 

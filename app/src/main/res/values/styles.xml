@@ -20,6 +20,11 @@
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
 
+    <!-- CHIP THEME -->
+    <style name="BeerAppTheme.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_choise_color</item>
+    </style>
+
     <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/background_rounded_corner_top_primary</item>
     </style>
