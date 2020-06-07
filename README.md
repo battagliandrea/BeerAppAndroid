@@ -6,6 +6,7 @@ I used the punkapi to create a sample application in order to analyze and to stu
 - app_domain: Kotlin module with entities implementation and repositories interfaces
 - app_usecase: Kotlin module with use cases implementation
 
+![Screen 1](https://github.com/battagliandrea/BeerAppAndroid/blob/master/image/screen.gif) 
 
 # Import project
 - open your **Terminal** app
@@ -14,6 +15,7 @@ I used the punkapi to create a sample application in order to analyze and to stu
 - select **Import Project from Gradle**
 
 # Download apk
+https://github.com/battagliandrea/BeerAppAndroid/blob/master/app/prod/release/app-prod-release.apk
 
 # Project specifications
 - Kotlin
