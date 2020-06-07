@@ -1,5 +1,5 @@
 # Beer App
-I used the punkapi to create a sample application in order to analyze and to study the basic principles of clean architecture on Android. The application is divided into four modules.
+I used Punkapi(https://punkapi.com/documentation/v2) to create a sample application in order to analyze and to study the basic principles of clean architecture on Android. The application is divided into four modules.
 
 - app: Android module with the UI and datasources implementation
 - app_data: Kotlin module with the datasources interface and repositories implementation
